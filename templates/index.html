@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sorting Hat Quiz</title>
+</head>
+<body>
+    <h1>Sorting Hat Quiz 🧙‍♂️</h1>
+
+    {% if result %}
+        <h2>The Sorting Hat has sorted you into... {{ result }}!</h2>
+        <a href="/">Try Again</a>
+    {% else %}
+        <form method="post">
+            <p>Q1) Do you like Dawn or Dusk?</p>
+            <input type="radio" name="q1" value="1" required> Dawn<br>
+            <input type="radio" name="q1" value="2"> Dusk<br><br>
+
+            <p>Q2) When I'm dead, I want people to remember me as:</p>
+            <input type="radio" name="q2" value="1" required> The Good<br>
+            <input type="radio" name="q2" value="2"> The Great<br>
+            <input type="radio" name="q2" value="3"> The Wise<br>
+            <input type="radio" name="q2" value="4"> The Bold<br><br>
+
+            <p>Q3) Which kind of instrument most pleases your ear?</p>
+            <input type="radio" name="q3" value="1" required> Violin<br>
+            <input type="radio" name="q3" value="2"> Trumpet<br>
+            <input type="radio" name="q3" value="3"> Piano<br>
+            <input type="radio" name="q3" value="4"> Drum<br><br>
+
+            <input type="submit" value="Submit">
+        </form>
+    {% endif %}
+</body>
+</html>
+
