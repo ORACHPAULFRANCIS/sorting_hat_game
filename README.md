@@ -59,19 +59,19 @@ This repository is configured for deployment to GitHub Pages with GitHub Actions
 ### Requirements
 
 1. Push the app to the repository's default branch.
-2. In GitHub, open the repository settings and enable GitHub Pages.
-3. Select the `GitHub Actions` source under the Pages section.
+2. In GitHub, open **Settings → Pages → Build and deployment**.
+3. Set **Source** to **GitHub Actions** (not “Deploy from a branch”). The workflow builds `dist/` and deploys that artifact.
 4. The workflow in `.github/workflows/deploy.yml` will build and publish the app automatically.
 
 ### Vite base path
 
-The app is configured with a repository-aware base for Pages deployments:
+The app uses the repository subpath when built by GitHub Actions, and `/` for Vercel and local builds:
 
 ```ts
-base: '/sorting_hat_game/'
+base: process.env.GITHUB_ACTIONS === 'true' ? '/sorting_hat_game/' : '/'
 ```
 
-This matches the actual GitHub repository name, so asset URLs resolve correctly after deployment.
+This makes generated asset URLs correct on both GitHub Pages and Vercel. Vercel's build and output directory are also specified in `vercel.json`.
 
 ## Notes
 
@@ -91,4 +91,3 @@ Those rules were ported into a TypeScript score engine and validated by tests to
 ## Acknowledgements
 
 Inspired by the magical world of Hogwarts and the iconic Sorting Hat tradition.
-
