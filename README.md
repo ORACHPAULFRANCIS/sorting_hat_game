@@ -52,26 +52,16 @@ npm test
 
 This runs the sorting-logic tests, including normal outcomes, ties, and invalid input handling.
 
-## GitHub Pages deployment
+## Vercel deployment
 
-This repository is configured for deployment to GitHub Pages with GitHub Actions.
+The app is configured for Vercel as a Vite static site. In the Vercel project settings, use:
 
-### Requirements
+- **Framework preset:** Vite
+- **Build command:** `npm run build`
+- **Output directory:** `dist`
+- **Install command:** `npm install` (or leave the default)
 
-1. Push the app to the repository's default branch.
-2. In GitHub, open **Settings → Pages → Build and deployment**.
-3. Set **Source** to **GitHub Actions** (not “Deploy from a branch”). The workflow builds `dist/` and deploys that artifact.
-4. The workflow in `.github/workflows/deploy.yml` will build and publish the app automatically.
-
-### Vite base path
-
-The app uses the repository subpath when built by GitHub Actions, and `/` for Vercel and local builds:
-
-```ts
-base: process.env.GITHUB_ACTIONS === 'true' ? '/sorting_hat_game/' : '/'
-```
-
-This makes generated asset URLs correct on both GitHub Pages and Vercel. Vercel's build and output directory are also specified in `vercel.json`.
+These build and output settings are also recorded in `vercel.json`. Vite uses `/` as its asset base, which is correct for Vercel's domain root. Push changes to the connected branch to trigger a deployment, or use **Redeploy** in the Vercel dashboard.
 
 ## Notes
 
